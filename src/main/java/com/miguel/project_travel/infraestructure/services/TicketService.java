@@ -8,6 +8,7 @@ import com.miguel.project_travel.domain.repositories.CustomerRepository;
 import com.miguel.project_travel.domain.repositories.FlyRepository;
 import com.miguel.project_travel.domain.repositories.TicketRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.ITicketService;
+import com.miguel.project_travel.infraestructure.helpers.CustomerHelper;
 import com.miguel.project_travel.util.BesTravelUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ public class TicketService implements ITicketService {
     private final FlyRepository flyRepository;
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
+    private final CustomerHelper customerHelper;
 
     @Override
     public TicketResponse create(TicketRequest request) {
@@ -43,7 +45,11 @@ public class TicketService implements ITicketService {
                 .arrivalDate(BesTravelUtil.getRandomLatter())
                 .departureDate(BesTravelUtil.getRandomSoon())
                 .build();
+
         var ticketPersisted = this.ticketRepository.save(ticketToPersist);
+
+        customerHelper.incrase(customer.getDni(),TicketService.class);
+
         log.info("Ticket saved with id:{}",ticketPersisted.getId());
 
         return  this.entityToResponse(ticketPersisted);

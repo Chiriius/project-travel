@@ -62,4 +62,30 @@ public class TourHelper {
     });
         return response;
 }
+    public TicketEntity createTicket(FlyEntity fly, CustomerEntity customer){
+        var ticketToPersist = TicketEntity.builder()
+                .id(UUID.randomUUID())
+                .fly(fly)
+                .customer(customer)
+                .price(fly.getPrice().add(fly.getPrice().multiply(TicketService.charger_price_percentage)))
+                .purchaseDate(LocalDate.now())
+                .arrivalDate(BesTravelUtil.getRandomLatter())
+                .departureDate(BesTravelUtil.getRandomSoon())
+                .build();
+        return this.ticketRepository.save(ticketToPersist);
+    }
+    public ReservationEntity createReservation (HotelEntity hotel,CustomerEntity customer,  Integer totalDays){
+
+        var reservationToPersist= ReservationEntity.builder()
+                .id(UUID.randomUUID())
+                .hotel(hotel)
+                .totalDays(totalDays)
+                .dateTimeReservation(LocalDateTime.now())
+                .dateStart(LocalDate.now())
+                .dateEnd(LocalDate.now().plusDays(totalDays))
+                .customer(customer)
+                .price(hotel.getPrice().add(hotel.getPrice().multiply(ReservationService.charges_price_percentage)))
+                .build();
+        return this.reservationRepository.save(reservationToPersist);
+    }
 }

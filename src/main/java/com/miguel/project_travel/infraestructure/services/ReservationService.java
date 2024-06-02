@@ -14,6 +14,7 @@ import com.miguel.project_travel.domain.repositories.ReservationRepository;
 import com.miguel.project_travel.domain.repositories.TourRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IReservationService;
 import com.miguel.project_travel.infraestructure.abstract_services.ITicketService;
+import com.miguel.project_travel.infraestructure.helpers.CustomerHelper;
 import com.miguel.project_travel.util.BesTravelUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,8 @@ public class ReservationService implements IReservationService {
     private final CustomerRepository customerRepository;
     private final HotelRepository hotelRepository;
     private final ReservationRepository reservationRepository;
+    private final CustomerHelper customerHelper;
+
     @Override
     public ReservationResponse create(ReservationRequest request) {
         var hotel = hotelRepository.findById(request.getIdHotel()).orElseThrow();
@@ -51,6 +54,7 @@ public class ReservationService implements IReservationService {
                 .price(hotel.getPrice().add(hotel.getPrice().multiply(charges_price_percentage)))
                 .build();
         var reservationPersisted= reservationRepository.save(reservationToPersist);
+        this.customerHelper.incrase(customer.getDni(),ReservationService.class);
         return this.entityToResponse(reservationPersisted);
     }
 
