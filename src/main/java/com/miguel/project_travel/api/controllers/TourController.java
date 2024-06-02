@@ -3,6 +3,7 @@ package com.miguel.project_travel.api.controllers;
 import com.miguel.project_travel.api.models.request.TourRequest;
 import com.miguel.project_travel.api.models.responses.TourResponse;
 import com.miguel.project_travel.infraestructure.abstract_services.ITourService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "tour")
 @AllArgsConstructor
+@Tag(name = "Tour")
 public class TourController {
     private  final ITourService tourService;
 
