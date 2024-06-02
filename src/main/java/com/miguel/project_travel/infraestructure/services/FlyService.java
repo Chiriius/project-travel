@@ -4,7 +4,7 @@ import com.miguel.project_travel.api.models.responses.FlyResponse;
 import com.miguel.project_travel.domain.entities.FlyEntity;
 import com.miguel.project_travel.domain.repositories.FlyRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IFlyService;
-import com.miguel.project_travel.util.SortType;
+import com.miguel.project_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @Service

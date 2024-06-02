@@ -1,4 +1,4 @@
-package com.miguel.project_travel.util;
+package com.miguel.project_travel.util.enums;
 
 import java.time.LocalDateTime;
 import java.util.Random;

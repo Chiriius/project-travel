@@ -1,6 +1,6 @@
 package com.miguel.project_travel.domain.entities;
 
-import com.miguel.project_travel.util.AeroLine;
+import com.miguel.project_travel.util.enums.AeroLine;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;

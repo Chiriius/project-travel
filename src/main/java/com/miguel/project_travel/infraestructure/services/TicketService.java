@@ -8,8 +8,11 @@ import com.miguel.project_travel.domain.repositories.CustomerRepository;
 import com.miguel.project_travel.domain.repositories.FlyRepository;
 import com.miguel.project_travel.domain.repositories.TicketRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.ITicketService;
+import com.miguel.project_travel.infraestructure.helpers.BlackListHelper;
 import com.miguel.project_travel.infraestructure.helpers.CustomerHelper;
-import com.miguel.project_travel.util.BesTravelUtil;
+import com.miguel.project_travel.util.enums.BesTravelUtil;
+import com.miguel.project_travel.util.enums.Tables;
+import com.miguel.project_travel.util.exceptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 @Transactional
 @Service
@@ -30,12 +32,13 @@ public class TicketService implements ITicketService {
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
     private final CustomerHelper customerHelper;
+    private BlackListHelper blackListHelper;
 
     @Override
     public TicketResponse create(TicketRequest request) {
-
-        var fly =flyRepository.findById(request.getIdFly()).orElseThrow();
-        var customer = customerRepository.findById(request.getIdClient()).orElseThrow();
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
+        var fly =flyRepository.findById(request.getIdFly()).orElseThrow(()->new IdNotFoundException(Tables.fly.name()));
+        var customer = customerRepository.findById(request.getIdClient()).orElseThrow(()->new IdNotFoundException(Tables.customer.name()));
         var ticketToPersist = TicketEntity.builder()
                 .id(UUID.randomUUID())
                 .fly(fly)

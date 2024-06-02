@@ -1,6 +1,6 @@
 package com.miguel.project_travel.infraestructure.abstract_services;
 
-import com.miguel.project_travel.util.SortType;
+import com.miguel.project_travel.util.enums.SortType;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;

@@ -5,6 +5,7 @@ import com.miguel.project_travel.api.models.request.TicketRequest;
 import com.miguel.project_travel.api.models.responses.ReservationResponse;
 import com.miguel.project_travel.api.models.responses.TicketResponse;
 import com.miguel.project_travel.infraestructure.abstract_services.IReservationService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class ReservationController {
     private final IReservationService reservationService;
 
     @PostMapping
-    public ResponseEntity<ReservationResponse>post(@RequestBody ReservationRequest request){
+    public ResponseEntity<ReservationResponse>post(@Valid @RequestBody ReservationRequest request){
         return ResponseEntity.ok(reservationService.create(request));
     }
     @GetMapping(path = "{id}")
@@ -31,7 +32,7 @@ public class ReservationController {
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<ReservationResponse> put(@PathVariable UUID id, @RequestBody ReservationRequest request){
+    public ResponseEntity<ReservationResponse> put(@Valid @PathVariable UUID id, @RequestBody ReservationRequest request){
         return ResponseEntity.ok(reservationService.update(request, id));
     }
 

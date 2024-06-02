@@ -1,9 +1,6 @@
 package com.miguel.project_travel.api.models.responses;
 
-import com.miguel.project_travel.util.AeroLine;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.miguel.project_travel.util.enums.AeroLine;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

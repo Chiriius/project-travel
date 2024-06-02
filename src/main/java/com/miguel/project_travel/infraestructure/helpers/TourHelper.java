@@ -5,7 +5,7 @@ import com.miguel.project_travel.domain.repositories.ReservationRepository;
 import com.miguel.project_travel.domain.repositories.TicketRepository;
 import com.miguel.project_travel.infraestructure.services.ReservationService;
 import com.miguel.project_travel.infraestructure.services.TicketService;
-import com.miguel.project_travel.util.BesTravelUtil;
+import com.miguel.project_travel.util.enums.BesTravelUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

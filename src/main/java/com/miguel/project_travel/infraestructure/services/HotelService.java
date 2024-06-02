@@ -1,12 +1,10 @@
 package com.miguel.project_travel.infraestructure.services;
 
-import com.miguel.project_travel.api.models.responses.FlyResponse;
 import com.miguel.project_travel.api.models.responses.HotelResponse;
-import com.miguel.project_travel.domain.entities.FlyEntity;
 import com.miguel.project_travel.domain.entities.HotelEntity;
 import com.miguel.project_travel.domain.repositories.HotelRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IHotelService;
-import com.miguel.project_travel.util.SortType;
+import com.miguel.project_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;

@@ -2,7 +2,7 @@ package com.miguel.project_travel.api.controllers;
 
 import com.miguel.project_travel.api.models.responses.HotelResponse;
 import com.miguel.project_travel.infraestructure.abstract_services.IHotelService;
-import com.miguel.project_travel.util.SortType;
+import com.miguel.project_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
