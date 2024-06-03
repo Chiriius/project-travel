@@ -10,6 +10,7 @@ import com.miguel.project_travel.domain.repositories.TourRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.ITourService;
 import com.miguel.project_travel.infraestructure.helpers.BlackListHelper;
 import com.miguel.project_travel.infraestructure.helpers.CustomerHelper;
+import com.miguel.project_travel.infraestructure.helpers.EmailHelper;
 import com.miguel.project_travel.infraestructure.helpers.TourHelper;
 import com.miguel.project_travel.util.enums.Tables;
 import com.miguel.project_travel.util.exceptions.IdNotFoundException;
@@ -17,10 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -33,8 +31,9 @@ public class TourService implements ITourService {
     private final HotelRepository hotelRepository;
     private  final CustomerRepository customerRepository;
     private final TourHelper tourHelper;
-    private CustomerHelper customerHelper;
-    private BlackListHelper blackListHelper;
+    private final CustomerHelper customerHelper;
+    private final BlackListHelper blackListHelper;
+    private final EmailHelper emailHelper;
 
 
     @Override
@@ -91,7 +90,7 @@ public class TourService implements ITourService {
         var tourSaved= this.tourRepository.save(tourToSave);
 
         this.customerHelper.incrase(customer.getDni(),TourService.class);
-
+        if (Objects.isNull(request.getEmail()))this.emailHelper.sendMail(request.getEmail(),customer.getFullName(), Tables.tour.name());
         return TourResponse.builder()
                 .reservationIds(tourSaved.getReservations().stream().map(ReservationEntity::getId).collect(Collectors.toSet()))
                 .ticketIds(tourSaved.getTickets().stream().map(TicketEntity::getId).collect(Collectors.toSet()))

@@ -1,5 +1,6 @@
 package com.miguel.project_travel.api.models.request;
 
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +17,6 @@ public class TicketRequest implements Serializable {
 
     private  String idClient;
     private Long idFly;
+    @Email(message = "Email invalido")
+    private String email;
 }

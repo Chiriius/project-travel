@@ -10,6 +10,8 @@ import com.miguel.project_travel.domain.repositories.ReservationRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IReservationService;
 import com.miguel.project_travel.infraestructure.helpers.BlackListHelper;
 import com.miguel.project_travel.infraestructure.helpers.CustomerHelper;
+import com.miguel.project_travel.infraestructure.helpers.EmailHelper;
+import com.miguel.project_travel.util.enums.Tables;
 import com.miguel.project_travel.util.exceptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 @Transactional
 @Service
@@ -32,6 +35,7 @@ public class ReservationService implements IReservationService {
     private final ReservationRepository reservationRepository;
     private final CustomerHelper customerHelper;
     private BlackListHelper blackListHelper;
+    private final EmailHelper emailHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
@@ -51,6 +55,8 @@ public class ReservationService implements IReservationService {
                 .build();
         var reservationPersisted= reservationRepository.save(reservationToPersist);
         this.customerHelper.incrase(customer.getDni(),ReservationService.class);
+        System.out.println(request.getEmail() +"ESTEEEE ES EL EMAIL");
+        if (Objects.nonNull(request.getEmail()))this.emailHelper.sendMail(request.getEmail(),customer.getFullName(), Tables.reservation.name());
         return this.entityToResponse(reservationPersisted);
     }
 
