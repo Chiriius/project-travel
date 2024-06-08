@@ -15,6 +15,14 @@ services:
       - ./db/sql/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
       - ./db/sql/data.sql:/docker-entrypoint-initdb.d/data.sql
 
+  cache:
+    image: redis:6.2-alpine
+    container_name: project_travel_cache
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --loglevel warning --requirepass ${PASSWORD_CACHE}
+
 
 
 

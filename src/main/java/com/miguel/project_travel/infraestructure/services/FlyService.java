@@ -4,9 +4,11 @@ import com.miguel.project_travel.api.models.responses.FlyResponse;
 import com.miguel.project_travel.domain.entities.FlyEntity;
 import com.miguel.project_travel.domain.repositories.FlyRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IFlyService;
+import com.miguel.project_travel.util.constants.CacheConstants;
 import com.miguel.project_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -46,9 +48,15 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readLessPrice(BigDecimal price) {
+       /*  try {
+            Thread.sleep( 7000);
+        } catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
 
-      /*  return this.flyRepository.selectLessPrice(price)
+       return this.flyRepository.selectLessPrice(price)
                 .stream()
                 .map(this::entityToResponse)
                 .collect(Collectors.toSet());
@@ -59,8 +67,15 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readBetweenPrice(BigDecimal min, BigDecimal max) {
-     /*  return this.flyRepository.selectBetweenPrice(min,max)
+     /*
+     try {
+            Thread.sleep( 7000);
+        } catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
+     return this.flyRepository.selectBetweenPrice(min,max)
                 .stream()
                 .map(this::entityToResponse)
                 .collect(Collectors.toSet());
