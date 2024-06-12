@@ -1,7 +1,6 @@
 package com.miguel.project_travel.api.models.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.miguel.project_travel.domain.entities.HotelEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

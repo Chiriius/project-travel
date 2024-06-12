@@ -1,8 +1,8 @@
 package com.miguel.project_travel.infraestructure.helpers;
 
-import com.miguel.project_travel.domain.entities.*;
-import com.miguel.project_travel.domain.repositories.ReservationRepository;
-import com.miguel.project_travel.domain.repositories.TicketRepository;
+import com.miguel.project_travel.domain.entities.jpa.*;
+import com.miguel.project_travel.domain.repositories.jpa.ReservationRepository;
+import com.miguel.project_travel.domain.repositories.jpa.TicketRepository;
 import com.miguel.project_travel.infraestructure.services.ReservationService;
 import com.miguel.project_travel.infraestructure.services.TicketService;
 import com.miguel.project_travel.util.enums.BesTravelUtil;

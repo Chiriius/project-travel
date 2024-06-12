@@ -1,12 +1,7 @@
-package com.miguel.project_travel.domain.repositories;
+package com.miguel.project_travel.domain.repositories.jpa;
 
-import com.miguel.project_travel.domain.entities.FlyEntity;
-import com.miguel.project_travel.domain.entities.HotelEntity;
+import com.miguel.project_travel.domain.entities.jpa.FlyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import java.math.BigDecimal;
-import java.util.Set;
 
 public interface FlyRepository extends JpaRepository<FlyEntity, Long> {
    /* Set<FlyEntity> selectLessPrice(BigDecimal price);

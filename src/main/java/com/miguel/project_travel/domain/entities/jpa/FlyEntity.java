@@ -1,4 +1,4 @@
-package com.miguel.project_travel.domain.entities;
+package com.miguel.project_travel.domain.entities.jpa;
 
 import com.miguel.project_travel.util.enums.AeroLine;
 import jakarta.persistence.*;

@@ -2,11 +2,11 @@ package com.miguel.project_travel.infraestructure.services;
 
 import com.miguel.project_travel.api.models.request.TourRequest;
 import com.miguel.project_travel.api.models.responses.TourResponse;
-import com.miguel.project_travel.domain.entities.*;
-import com.miguel.project_travel.domain.repositories.CustomerRepository;
-import com.miguel.project_travel.domain.repositories.FlyRepository;
-import com.miguel.project_travel.domain.repositories.HotelRepository;
-import com.miguel.project_travel.domain.repositories.TourRepository;
+import com.miguel.project_travel.domain.entities.jpa.*;
+import com.miguel.project_travel.domain.repositories.jpa.CustomerRepository;
+import com.miguel.project_travel.domain.repositories.jpa.FlyRepository;
+import com.miguel.project_travel.domain.repositories.jpa.HotelRepository;
+import com.miguel.project_travel.domain.repositories.jpa.TourRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.ITourService;
 import com.miguel.project_travel.infraestructure.helpers.BlackListHelper;
 import com.miguel.project_travel.infraestructure.helpers.CustomerHelper;

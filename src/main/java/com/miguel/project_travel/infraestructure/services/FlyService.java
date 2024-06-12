@@ -1,8 +1,8 @@
 package com.miguel.project_travel.infraestructure.services;
 
 import com.miguel.project_travel.api.models.responses.FlyResponse;
-import com.miguel.project_travel.domain.entities.FlyEntity;
-import com.miguel.project_travel.domain.repositories.FlyRepository;
+import com.miguel.project_travel.domain.entities.jpa.FlyEntity;
+import com.miguel.project_travel.domain.repositories.jpa.FlyRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IFlyService;
 import com.miguel.project_travel.util.constants.CacheConstants;
 import com.miguel.project_travel.util.enums.SortType;

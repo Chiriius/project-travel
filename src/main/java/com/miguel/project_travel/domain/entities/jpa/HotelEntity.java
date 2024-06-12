@@ -1,4 +1,4 @@
-package com.miguel.project_travel.domain.entities;
+package com.miguel.project_travel.domain.entities.jpa;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Formatter;
 import java.util.Set;
 
 @Entity(name = "hotel")

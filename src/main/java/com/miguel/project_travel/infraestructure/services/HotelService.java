@@ -1,8 +1,8 @@
 package com.miguel.project_travel.infraestructure.services;
 
 import com.miguel.project_travel.api.models.responses.HotelResponse;
-import com.miguel.project_travel.domain.entities.HotelEntity;
-import com.miguel.project_travel.domain.repositories.HotelRepository;
+import com.miguel.project_travel.domain.entities.jpa.HotelEntity;
+import com.miguel.project_travel.domain.repositories.jpa.HotelRepository;
 import com.miguel.project_travel.infraestructure.abstract_services.IHotelService;
 import com.miguel.project_travel.util.constants.CacheConstants;
 import com.miguel.project_travel.util.enums.SortType;

@@ -4,6 +4,7 @@ import com.miguel.project_travel.api.models.responses.BaserErrorResponse;
 import com.miguel.project_travel.api.models.responses.ErrorResponse;
 import com.miguel.project_travel.api.models.responses.ErrorsResponse;
 import com.miguel.project_travel.util.exceptions.IdNotFoundException;
+import com.miguel.project_travel.util.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 
 public class BadRequestController {
 
-    @ExceptionHandler(IdNotFoundException.class)
-    public BaserErrorResponse handleIdNotFound(IdNotFoundException exception){
+    @ExceptionHandler({IdNotFoundException.class, UserNotFoundException.class})
+    public BaserErrorResponse handleIdNotFound(RuntimeException exception){
 
         return ErrorResponse.builder()
                 .message(exception.getMessage())
